@@ -1,0 +1,12 @@
+{
+  "name": "frontline-1916",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A six-mission WW1-inspired browser shooter",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test *.test.js"
+  },
+  "engines": { "node": ">=20" }
+}

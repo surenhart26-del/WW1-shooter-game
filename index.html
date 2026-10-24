@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#151e1b">
+  <meta name="description" content="Frontline 1916 — een WO1-schietspel met zes missies, een Lee-Enfield, M1911 en handgranaten.">
+  <title>Frontline 1916 — De Westelijke Frontlinie</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151e1b'/%3E%3Cpath d='M32 8l6 17 18 1-14 11 5 18-15-10-15 10 5-18L8 26l18-1z' fill='%23cfad72'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="menu">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Frontline 1916 home"><span class="brand-mark">✦</span> FRONTLINE <span class="brand-year">1916</span></a>
+      <span class="edition">HET WESTELIJK FRONT <span class="dot"></span> SINGLEPLAYER</span>
+      <button id="sound" class="quiet-button" aria-pressed="false" aria-label="Geluid aanzetten">GELUID UIT <span>◌</span></button>
+    </header>
+    <section class="hero">
+      <canvas id="backdrop" width="1280" height="720" aria-hidden="true"></canvas>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> EEN CAMPAGNE IN ZES HOOFDSTUKKEN</p>
+        <h1>HOUD DE<br><em>LINIE.</em></h1>
+        <p class="intro">Zes missies. Drie wapens. Eén front.<br>Van de loopgraven naar de laatste heuvel —<br>jouw opdracht begint hier.</p>
+        <button id="campaign-start" class="primary">START DE CAMPAGNE <span>↗</span></button>
+        <p class="hero-note">BROWSER FPS <i>•</i> DIRECT SPEELBAAR <i>•</i> GEEN DOWNLOAD</p>
+      </div>
+      <div class="hero-coordinate"><span>50°51′ N / 02°53′ E</span><b>SECTOR 01 — HET WESTELIJK FRONT</b><span>HERFST, 1916</span></div>
+      <div class="hero-stamp">VELDBEVEL<br><strong>№ 006</strong><br>WESTELIJK FRONT</div>
+    </section>
+    <section class="operations">
+      <div class="section-heading"><div><p class="eyebrow">JOUW VELDTOCHT</p><h2>Operatieoverzicht<span> / 06</span></h2></div><p id="progress-label">0 / 6 MISSIES VOLTOOID</p></div>
+      <div id="mission-grid" class="mission-grid"></div>
+    </section>
+    <section class="loadout">
+      <div class="loadout-heading"><p class="eyebrow">STANDAARDUITRUSTING</p><h2>Vertrouw op<br>je uitrusting.</h2><p>Wissel op het juiste moment.<br>Elke patroon telt.</p></div>
+      <article class="weapon-card"><span class="weapon-key">01 / GEWEER</span><svg viewBox="0 0 280 90" aria-hidden="true"><path d="M15 63l42-26h75l15 7h110v9H145l-7 7H76L30 79z" fill="#71543a"/><path d="M88 34h167v10H88zM138 29h11v16h-11zM237 27h6v18h-6z" fill="#8b9184"/><path d="M91 51v16h24l8-16" fill="none" stroke="#8b9184" stroke-width="4"/></svg><h3>Lee-Enfield</h3><p>Precisie op afstand. Eén raak schot.</p><div class="weapon-meta"><span>10 PATRONEN</span><span>TOETS 1</span></div></article>
+      <article class="weapon-card"><span class="weapon-key">02 / PISTOOL</span><svg viewBox="0 0 280 90" aria-hidden="true"><path d="M87 24h110v20h-52l-11 38h-41l11-39H87z" fill="#7e857b"/><path d="M104 43h30l-9 32h-30z" fill="#71543a"/><path d="M140 44v18h21l7-18" fill="none" stroke="#7e857b" stroke-width="4"/><path d="M92 29h96" stroke="#afb4a3" stroke-width="2"/></svg><h3>M1911</h3><p>Snel en betrouwbaar van dichtbij.</p><div class="weapon-meta"><span>7 PATRONEN</span><span>TOETS 2</span></div></article>
+      <article class="weapon-card"><span class="weapon-key">03 / EXPLOSIEF</span><svg viewBox="0 0 280 90" aria-hidden="true"><ellipse cx="136" cy="53" rx="25" ry="30" fill="#646c4a"/><path d="M114 40h44m-47 15h50m-45 15h40m-29-46v58m17-58v58" stroke="#303a2e" stroke-width="3"/><path d="M131 23V12h21l11 35" fill="none" stroke="#a1a58f" stroke-width="5"/><circle cx="120" cy="17" r="8" fill="none" stroke="#a1a58f" stroke-width="2"/></svg><h3>Handgranaat</h3><p>Ruim een vijandelijke positie op.</p><div class="weapon-meta"><span>3 GRANATEN</span><span>TOETS 3 / G</span></div></article>
+    </section>
+    <footer><span>✦ FRONTLINE 1916</span><p>Een fictieve veldtocht, geïnspireerd op de Eerste Wereldoorlog.</p><button id="controls-open" class="quiet-button">BESTURING ↗</button></footer>
+  </main>
+
+  <section id="game-screen" hidden aria-label="Spel">
+    <canvas id="game" width="960" height="540" tabindex="0" aria-label="Spelbeeld. Gebruik WASD om te bewegen en de muis of pijltjestoetsen om te richten."></canvas>
+    <div class="game-top"><div><p id="hud-sector" class="eyebrow">MISSIE 01</p><h2 id="hud-title"></h2><p id="hud-objective"></p></div><button id="pause-button" class="hud-button">Ⅱ <span>PAUZE</span></button></div>
+    <div id="crosshair" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div id="hitmarker" hidden aria-hidden="true">×</div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <div id="interaction"></div>
+    <div class="game-bottom"><div class="health"><span>GEZONDHEID</span><strong id="hud-health">100</strong><div class="health-track"><i id="health-fill"></i></div></div><div class="field-count"><span id="hud-kills">0 / 0</span><small>VIJANDEN UITGESCHAKELD</small></div><div class="ammunition"><span id="hud-weapon">LEE-ENFIELD</span><div><strong id="hud-ammo">10</strong><small id="hud-reserve">/ 60</small></div><p id="hud-grenades">G · 3 GRANATEN</p></div></div>
+    <div class="game-help">WASD bewegen <b>·</b> MUIS / ← → richten <b>·</b> KLIK / SPATIE vuren <b>·</b> R herladen <b>·</b> E doel <b>·</b> 1 2 3 wapens</div>
+    <div id="touch-controls"><div class="touch-move"><button data-hold="KeyW" aria-label="Vooruit">↑</button><button data-hold="KeyA" aria-label="Links">←</button><button data-hold="KeyS" aria-label="Achteruit">↓</button><button data-hold="KeyD" aria-label="Rechts">→</button></div><div class="touch-actions"><button data-action="switch">1 / 2 / 3</button><button data-action="reload">R</button><button data-action="interact">E</button><button data-hold="Space" class="touch-fire">VUUR</button></div></div>
+  </section>
+
+  <dialog id="briefing"><div class="dialog-head"><span class="eyebrow" id="brief-number">VELDBEVEL 01</span><button data-close="briefing" class="close" aria-label="Sluiten">×</button></div><p id="brief-location" class="coordinates"></p><h2 id="brief-title"></h2><p id="brief-description"></p><div class="orders"><p>01 <span>Schakel de vijandelijke bezetting uit.</span></p><p>02 <span id="brief-objective"></span></p><p>03 <span>Bereik het groene extractiepunt.</span></p></div><p class="brief-controls">WASD bewegen · Muis of ← → richten · Klik of spatie vuren<br>R herladen · 1 / 2 / 3 wapen · G granaat · E doel veiligstellen</p><button id="deploy" class="primary">NAAR HET FRONT <span>↗</span></button></dialog>
+  <dialog id="pause"><p class="eyebrow">VELDPAUZE</p><h2>Even op adem.</h2><p>WASD bewegen · Muis / ← → richten<br>Klik / spatie schieten · Shift sprinten<br>1 Lee-Enfield · 2 M1911 · 3 handgranaat<br>R herladen · G granaat · E doel veiligstellen<br>Esc / P pauzeren · M geluid</p><button id="resume" class="primary">HERVATTEN <span>→</span></button><button id="pause-menu" class="secondary">TERUG NAAR OPERATIES</button></dialog>
+  <dialog id="result"><p id="result-eyebrow" class="eyebrow"></p><h2 id="result-title"></h2><p id="result-description"></p><div id="result-stats" class="result-stats"></div><button id="result-next" class="primary"></button><button id="result-menu" class="secondary">OPERATIEOVERZICHT</button></dialog>
+  <dialog id="controls"><div class="dialog-head"><p class="eyebrow">VELDHANDLEIDING</p><button data-close="controls" class="close" aria-label="Sluiten">×</button></div><h2>Ken je uitrusting.</h2><p>WASD — bewegen<br>Muis of ← → — richten<br>Muisklik of spatie — schieten<br>Shift — sprinten<br>1 / 2 / 3 — wisselen van wapen<br>R — herladen · G — granaat werpen<br>E — missiedoel veiligstellen<br>Esc / P — pauze · M — geluid</p><p>Pak medische kisten, munitie en granaten op door eroverheen te lopen. Gouden markeringen geven je doel aan; groen geeft de uitgang aan. Houd afstand van je eigen granaten.</p><p>Op een touchscreen: beweeg met de pijlen, sleep over het beeld om te richten en tik op VUUR.</p></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
